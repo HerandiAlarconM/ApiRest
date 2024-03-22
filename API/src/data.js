@@ -10,6 +10,9 @@ export class Data extends LitElement{
 
     static get styles(){
         return css`
+        :host{
+            font-family: "Sansita Swashed";
+        }
         .contenido{
             margin-top: 20px;
             display: grid;
@@ -36,7 +39,25 @@ export class Data extends LitElement{
         }
         label{
             color:white;
+            margin: 15px;
+            font-size:20px;
         }
+        input,select{
+            padding: 7px;
+            border-radius: 10px;
+        }
+        button{
+            background-color: #3a5068;
+            color: white;
+            font-size:15px;
+            border: 2px solid #37953D;
+            border-radius: 10px;
+            padding: 5px;
+            margin-left:20px;
+        } 
+        button:hover {background: #37953D; 
+        }
+        
         `;
     }
 
@@ -62,7 +83,7 @@ export class Data extends LitElement{
         return html`
             <h1> Personajes de Harry Potter </h1>
             <div class="busqueda">
-                <input type:"text" placeholder="Escribe un nombre aqui"></input>
+                <input type:"text" @input=${this.filtradoNombre} placeholder="Escribe un nombre aqui"></input>
                 <label>Filtro por casas:</label>
                 <select @change=${this.filtradoCasas}>
                     <option>Gryffindor</option>
@@ -90,6 +111,14 @@ export class Data extends LitElement{
         this.data = this.allData.filter(casas =>
             casas.house === event.target.value)
     }
+    filtradoNombre(evento){
+        if(evento.target.value.trim() == ''){
+            this.data = this.allData;
+        }else{
+            this.data = this.allData.filter(nombre =>
+                nombre.name.toLowerCase() === evento.target.value.toLowerCase())
+            }
+        }
     limpiar(){
         this.data = this.allData;
     }
