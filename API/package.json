@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "wds --node-resolve --watch --open"
+  },
+  "author": "Susana Herandi Alarcon Mendoza",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "^3.1.2"
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.4.3"
+  }
+}
